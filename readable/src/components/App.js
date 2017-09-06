@@ -1,8 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import CategoryList from './CategoryList'
 import PostList from './PostList'
 import CreateEditPost from './CreateEditPost'
+import uuid from 'uuid'
+
 
 export default function App () {
   return (
@@ -11,6 +13,11 @@ export default function App () {
       <Route exact path='/' render={() => (
         <div>
           <CategoryList />
+          <div className='row'>
+            <div className='center aligned column'>
+              <Link to='createEdit'><i className='add circle icon'></i></Link>
+            </div>
+          </div>
           <PostList />
         </div>
       )}/>
