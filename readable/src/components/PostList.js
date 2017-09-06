@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 class PostList extends Component {
-
 	componentDidMount() {
 		const url = 'http://localhost:5001/posts'
 		this.props.fetchPosts(url)
@@ -16,10 +15,10 @@ class PostList extends Component {
   return (
     <div className='ui list'>
       <ul>
-        {posts.length > 0 && this.props.posts.map((post) => (
+        {posts.length > 0 && posts.map((post) => (
           <li key={post.id}>
-            <div className="item">
-            	{post}
+            <div className='item'>
+            	{post.body} @ {post.timestamp}
             </div>
           </li>
         ))}
@@ -31,13 +30,12 @@ class PostList extends Component {
 
 
 const mapStateToProps = ( state ) => {
-	console.log (state)
   return {
     posts: state.posts
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = ( dispatch ) => {
   return {
     fetchPosts: (url) => dispatch(fetchPosts(url))
   }

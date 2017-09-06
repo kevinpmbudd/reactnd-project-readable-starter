@@ -1,33 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import React from 'react';
+import CategoryList from './CategoryList'
 import PostList from './PostList'
 
-class App extends Component {
- 
-  render() {
-
-    return (
-      <div className="App">
-        <PostList />
-      </div>
-    );
-  }
+export default function App () {
+  return (
+    <div className="App">
+      <CategoryList />
+      <PostList />
+    </div>
+  )
 }
-
-function mapStateToProps ( state ) {
-  console.log( state )
-
-  return {
-    state
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
