@@ -1,34 +1,55 @@
-import React, { Component } from 'react';
+import React, { Component }  from 'react';
+import { fetchPosts } from '../actions'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
-export default function PostList () {
+class PostList extends Component {
+
+	componentDidMount() {
+		const url = 'http://localhost:5001/posts'
+		this.props.fetchPosts(url)
+	}
+
+	render() {
+	const posts = this.props.posts
+
   return (
-    <div className=''>
+    <div className='ui list'>
       <ul>
-        {this.props.posts.map((post) => (
-          <li key={post}>
-            {post}
+        {posts.length > 0 && this.props.posts.map((post) => (
+          <li key={post.id}>
+            <div className="item">
+            	{post}
+            </div>
           </li>
         ))}
       </ul>
     </div>
-  )
-}
-
-function mapStateToProps ( { posts } ) {
-  return {
-    posts
+   );
   }
 }
 
-function mapDispatchToProps (dispatch) {
+
+const mapStateToProps = ( state ) => {
+	console.log (state)
   return {
-    // clickUpButton: () => dispatch(increment(1)),
-    // clickDownButton: () => dispatch(decrement(1))
+    posts: state.posts
   }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPosts: (url) => dispatch(fetchPosts(url))
+  }
+}
+
+PostList.propTypes = {
+	posts: PropTypes.array.isRequired,
+	fetchPosts: PropTypes.func.isRequired
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostList)
+)(PostList);
+

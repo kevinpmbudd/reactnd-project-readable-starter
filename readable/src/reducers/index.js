@@ -1,16 +1,16 @@
-import { UP, DOWN } from '../actions'
+import { combineReducers } from 'redux'
+import { RECIEVE_POSTS } from '../actions'
 
-const initialState = 0
+function posts(state = [], action) {
+    switch (action.type) {
+        case RECIEVE_POSTS:
+            return action.posts;
 
-function testReducer (state = initialState, action) {
-	switch (action.type) {
-		case UP :
-			return state + action.increment
-		case DOWN :
-			return state - action.decrement
-		default :
-			return state
-	}	
+        default:
+            return state;
+    }
 }
 
-export default testReducer
+export default combineReducers({
+	posts,
+})

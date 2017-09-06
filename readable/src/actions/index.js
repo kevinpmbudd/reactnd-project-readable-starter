@@ -1,16 +1,15 @@
-export const UP = 'UP'
-export const DOWN = 'DOWN'
+import { goFetchPosts } from '../utils/api'
 
-export function increment (value) {
-	return {
-		type: UP,
-		increment: value
-	}
+export const RECIEVE_POSTS = 'RECIEVE_POSTS';
+
+export function recievePosts ( posts ) {
+    return {
+        type: RECIEVE_POSTS,
+        posts
+    }
 }
 
-export function decrement (value) {
-	return {
-		type: DOWN,
-		decrement: value
-	}
-}
+export const fetchPosts = (url) => dispatch => (
+    goFetchPosts(url)
+		.then( posts => dispatch(recievePosts(posts)))
+)
