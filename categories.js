@@ -6,6 +6,10 @@ let db = {}
 const defaultData = {
   categories: [
       {
+        name: 'javascript',
+        path: 'javascript'
+      },
+      {
         name: 'react',
         path: 'react'
       },
