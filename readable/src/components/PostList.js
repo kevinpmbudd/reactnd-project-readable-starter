@@ -14,15 +14,17 @@ class PostList extends Component {
 
   return (
     <div className='ui list'>
-      <ul>
         {posts.length > 0 && posts.map((post) => (
-          <li key={post.id}>
-            <div className='item'>
-            	{post.body} @ {post.timestamp}
-            </div>
-          </li>
+          <div key={post.id}className="ui icon message">
+					  <i className="idea icon"></i>
+					  <div className="content">
+					    <div className="header">
+					      {post.title}
+					    </div>
+					    <p>{post.body}</p>
+					  </div>
+					</div>
         ))}
-      </ul>
     </div>
    );
   }
