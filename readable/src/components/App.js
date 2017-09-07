@@ -3,8 +3,6 @@ import { Route, Link } from 'react-router-dom'
 import CategoryList from './CategoryList'
 import PostList from './PostList'
 import CreateEditPost from './CreateEditPost'
-import uuid from 'uuid'
-
 
 export default function App () {
   return (

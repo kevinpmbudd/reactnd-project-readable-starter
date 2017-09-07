@@ -2,7 +2,8 @@ import * as APIutil from '../utils/api'
 
 export const RECIEVE_POSTS = 'RECIEVE_POSTS';
 export const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
-export const ADD_NEW_POST = 'ADD_NEW_POST'
+export const ADD_NEW_POST = 'ADD_NEW_POST';
+export const UPDATE_TITLE_FIELD = 'UPDATE_TITLE_FIELD';
 
 export function recievePosts ( posts ) {
     return {
@@ -22,6 +23,14 @@ export function addNewPost ( post ) {
     return {
         type: ADD_NEW_POST,
         post: post
+    }
+}
+
+export function updateTitleField ( e ) {
+    console.log(e.target)
+    return {
+        type: UPDATE_TITLE_FIELD,
+        title: e.target.value
     }
 }
 

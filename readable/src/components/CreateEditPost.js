@@ -1,14 +1,20 @@
 import React, { Component }  from 'react';
 import { connect } from 'react-redux'
+import { postNewPost, updateTitleField } from '../actions'
 import uuid from 'uuid'
 
 class CreateEditPost extends Component {
-	componentDidMount() {
-		
+	handleSubmit() {
+
 	}
 
+	// updateTitle = (e) => {
+
+	// }
+
 	render() {
-		// const { id, timestamp, title, author, category, body } = this.props.formValue
+	const { id, timestamp, title, author, category, body } = this.props.postForm
+
 
 	return (
 		<div className='ui form'>
@@ -18,6 +24,7 @@ class CreateEditPost extends Component {
 					<input 
 						type='text'
 						value={ title }
+						onChange={this.props.updateTitle }
 						placeholder='title of post'/>
 				</div>
 				<div className='five wide field'>
@@ -42,7 +49,7 @@ class CreateEditPost extends Component {
 				<label>body</label>
 				<textarea value={ body }></textarea>
 			</div>
-			<button className='ui button' type='submit'>Submit</button>
+			<button className='ui button' type='submit' onClick={() => this.props.addPost(this.props.postForm)}>Submit</button>
 		</div>
 	
 		)
@@ -51,20 +58,21 @@ class CreateEditPost extends Component {
 
 const mapStateToProps = ( state ) => {
   return {
-  	// formValue: {
-  	// 	 id: state.formValue.id,
-  	// 	 timestamp: state.formValue.timestamp,
-  	// 	 title: state.formValue.title,
-  	// 	 author: state.formValue.author,
-  	// 	 category: state.formValue.category,
-  	// 	 body: state.formValue.body
-  	// }
+  	postForm: {
+  		 id: state.postForm.id,
+  		 timestamp: state.postForm.timestamp,
+  		 title: state.postForm.title,
+  		 author: state.postForm.author,
+  		 category: state.postForm.category,
+  		 body: state.postForm.body
+  	}
   }
 }
 
 const mapDispatchToProps = ( dispatch ) => {
   return {
-
+  	updateTitle: (e) => dispatch(updateTitleField(e)),
+  	addPost: (post) => dispatch(postNewPost('http://localhost:5001/posts', post))
   }
 }
 
